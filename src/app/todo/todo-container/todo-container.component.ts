@@ -7,16 +7,17 @@ import { Todo } from '../../model/todo';
   templateUrl: './todo-container.component.html',
   styleUrls: ['./todo-container.component.css'],
 })
-export class TodoContainerComponent implements OnInit {
+export class TodoContainerComponent {
   public todos: Array<Todo>;
 
   constructor() {
     this.todos = [];
   }
 
-  ngOnInit() {}
-
   addTodo(todo: Todo) {
     this.todos = [...this.todos, todo];
+  }
+  deleteTodo(task) {
+    this.todos = this.todos.filter(t => t.task !== task);
   }
 }

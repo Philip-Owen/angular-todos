@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Todo } from '../../model/todo';
 
@@ -8,17 +8,19 @@ import { Todo } from '../../model/todo';
   styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent {
-  public todos: Array<Todo>;
+  @Input() public todos: Array<Todo>;
+  @Output() private deleteTodo: EventEmitter<string>;
 
   constructor() {
-    this.todos = [new Todo('Clean room'), new Todo('Learn more Angular'), new Todo('Build cool apps')];
+    this.deleteTodo = new EventEmitter<string>();
   }
 
   markCompleted(index) {
     this.todos[index].completed = !this.todos[index].completed;
+    console.log(this.todos);
   }
 
-  deleteTodo(todoTask) {
-    this.todos = this.todos.filter( t => t.task !== todoTask)
+  onTodoDelete(event, task) {
+    this.deleteTodo.emit(task);
   }
 }

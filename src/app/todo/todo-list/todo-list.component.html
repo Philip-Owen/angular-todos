@@ -2,6 +2,6 @@
   <div class="todo" *ngFor="let todo of todos; index as i">
       <p [class]="todo.completed ? 'task done' : 'task'">{{ todo.task }}</p>
       <button (click)="markCompleted(i)">Done?</button>
-      <button (click)="deleteTodo(todo.task)">Delete</button>
+      <button (click)="onTodoDelete($event,todo.task)">Delete</button>
   </div>
 </div>
